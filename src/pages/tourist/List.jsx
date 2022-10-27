@@ -137,23 +137,6 @@ const StList = styled.div`
   max-width: 428px;
   width: 100%;
   margin: 0 auto;
-
-  & button {
-    margin-left: 15px;
-    margin-top: 30px;
-    background: #ffc0c0;
-    height: 40px;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 17px;
-    text-align: center;
-    color: #ffffff;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
 `;
 
 const Title = styled.div`

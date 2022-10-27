@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../../shared/Api";
 import Slider from "react-slick";
+import { instance } from "../../shared/Api";
 
 const Festival = () => {
   // Slick 구현
@@ -30,16 +30,12 @@ const Festival = () => {
     getEvents();
   }, []);
 
-  if (festival === undefined) {
-    return;
-  }
-
   return (
     <StFestival>
       <Title>이 달의 축제</Title>
       <FestivalList>
         <Slider {...settings}>
-          {festival.map((festival) => {
+          {festival?.map((festival) => {
             return (
               <Card key={festival.id}>
                 <img

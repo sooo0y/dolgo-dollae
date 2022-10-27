@@ -29,11 +29,11 @@ const CommentModal = ({ comment }) => {
   };
 
   const onClose = () => {
-    setImageModal(false);
+    setImageModal(false)
   };
   const onOpen = () => {
-    setImageModal(true);
-  };
+    setImageModal(true)
+  }
   const noLogin = (e) => {
     e.preventDefault();
     Swal.fire({
@@ -48,51 +48,44 @@ const CommentModal = ({ comment }) => {
       <ComDiv key={comment.comment_id}>
         <BoxDiv>
           <div>
-            <div style={{ display: "flex", alignItems: "center" }}></div>
-            <div style={{ textAlign: "left" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>{comment.title}</div>
+            <div style={{ textAlign: "left" }} >
               {comment.imageList.map((image, index) => {
-                return (
-                  <DetailImg
-                    onClick={onOpen}
-                    key={index}
-                    alt="image"
-                    src={image}
-                  />
-                );
+                return <DetailImg onClick={onOpen} key={index} alt="image" src={image} />;
               })}
             </div>
             <Star key={comment.comment_id} comment={comment} />
             <p style={{ marginTop: "20px", lineHeight: "28px" }}>
               {comment.content}
             </p>
-            <div>
-              {nickname === comment.nickname || role === "ADMIN" ? (
-                <ButtonDiv>
-                  {nickname === comment.nickname ? (
-                    <DelBut
-                      onClick={() =>
-                        navigate(
-                          "/detail/update/" +
-                            comment.place_id +
-                            "/" +
-                            comment.comment_id
-                        )
-                      }
-                    >
-                      수정하기
-                    </DelBut>
-                  ) : null}
+              <div>
+              {(nickname === comment.nickname) || (role === "ADMIN")? (
+              <ButtonDiv>
+                 {(nickname === comment.nickname)? (
+                <DelBut
+                  onClick={() =>
+                    navigate(
+                      "/detail/update/" +
+                        comment.place_id +
+                        "/" +
+                        comment.comment_id
+                    )
+                  }
+                >
+                    수정하기
+                  </DelBut>)
+                  :null}
                   <ReviseBut onClick={deleteModal}>삭제하기</ReviseBut>
                 </ButtonDiv>
               ) : null}
               <ModalPortal>
                 {modalOn && <Modal onClose={handleModal} comment={comment} />}
               </ModalPortal>
-            </div>
+              </div>
           </div>
-          <ModalPortal>
-            {imageModal && <ModalImage onClose={onClose} comment={comment} />}
-          </ModalPortal>
+            <ModalPortal>
+              {imageModal && <ModalImage onClose={onClose} comment={comment}/>}
+            </ModalPortal> 
         </BoxDiv>
       </ComDiv>
     </>
@@ -139,13 +132,14 @@ const DetailImg = styled.img`
   width: 95px;
   border-radius: 20px;
   margin-top: 1rem;
-  margin-right: 0.5rem;
-  height: 84px;
+  margin-right:0.5rem;
+  height:84px;
   cursor: pointer;
-  @media screen and (max-width: 398px) {
-    width: 82px;
+  @media screen and (max-width: 398px){
+    width:82px;
   }
 `;
+
 
 const ButtonDiv = styled.div`
   display: flex;

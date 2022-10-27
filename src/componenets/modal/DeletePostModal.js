@@ -5,9 +5,11 @@ import { instance } from "../../shared/Api";
 import Swal from "sweetalert2";
 
 const DeletePostModal = ({ deleteModal, setDeleteModal }) => {
+  // param을 통해 place_id 가져옴
   const place_id = useParams();
   const navigate = useNavigate();
 
+  // 삭제를 Click했을 경우
   const deleteHandler = async () => {
     try {
       await instance.delete(`/api/auth/place/${place_id.id}`);
@@ -31,10 +33,24 @@ const DeletePostModal = ({ deleteModal, setDeleteModal }) => {
       <Content>
         <PageDel>
           <p>정말 삭제하시겠습니까?</p>
-          <Button>
-            <DeleteButton onClick={deleteHandler}>삭제</DeleteButton>
-            <CancelButton onClick={() => setDeleteModal(!deleteModal)}>취소</CancelButton>
-          </Button>
+          <Buttons>
+            <Button
+              background="#abd4e2"
+              border="1px solid #abd4e2"
+              color="rgb(255, 255, 255)"
+              onClick={deleteHandler}
+            >
+              삭제
+            </Button>
+            <Button
+              background="white"
+              border="3px solid #abd4e2"
+              color="#abd4e2"
+              onClick={() => setDeleteModal(!deleteModal)}
+            >
+              취소
+            </Button>
+          </Buttons>
         </PageDel>
       </Content>
     </Background>
@@ -43,7 +59,6 @@ const DeletePostModal = ({ deleteModal, setDeleteModal }) => {
 
 export default DeletePostModal;
 
-//아래는 styled-components를 통한 스타일링
 const Background = styled.div`
   height: 100%;
   width: 100%;
@@ -61,7 +76,6 @@ const Background = styled.div`
 const Content = styled.div`
   height: 100%;
   width: 100%;
-  /* margin-top: 70px; */
   position: relative;
   overflow: scroll;
   background: rgba(0, 0, 0, 0.6);
@@ -88,7 +102,7 @@ const PageDel = styled.div`
   border-radius: 20px;
 `;
 
-const Button = styled.div`
+const Buttons = styled.div`
   width: 160px;
   height: 35px;
   display: flex;
@@ -97,7 +111,7 @@ const Button = styled.div`
   margin-top: 20px;
 `;
 
-const DeleteButton = styled.button`
+const Button = styled.button`
   font-weight: 600;
   margin-right: 10px;
   display: flex;
@@ -106,25 +120,9 @@ const DeleteButton = styled.button`
   height: 100%;
   font-size: 16px;
   align-items: center;
-  background: white;
-  border: 3px solid #abd4e2;
-  color: #abd4e2;
-  cursor: pointer;
-  border-radius: 5px;
-`;
-
-const CancelButton = styled.button`
-  font-weight: 600;
-  margin-right: 10px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-  align-items: center;
-  background: #abd4e2;
-  border: 1px solid #abd4e2;
-  color: rgb(255, 255, 255);
+  background: ${(props) => props.background};
+  border: ${(props) => props.border};
+  color: ${(props) => props.color};
   cursor: pointer;
   border-radius: 5px;
 `;

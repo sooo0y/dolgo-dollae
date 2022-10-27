@@ -1,17 +1,19 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import css from "../../css/header.css";
+import styled from "styled-components";
+import Swal from "sweetalert2";
+import { instance } from "../../shared/Api";
+
+// 이미지
 import dolphin from "../../assert/header/logo_.png";
 import bell from "../../assert/header/bell.png";
-import { instance } from "../../shared/Api";
-import Search from "./Search";
 import burger from "../../assert/header/burger.png";
+
+// component
+import Search from "./Search";
 import SSE from "../sse/SSE";
-import { useEffect } from "react";
-import Swal from "sweetalert2";
-import ModalPortal from "../modal/ModalPortal";
 import HeaderMenu from "./HeaderMenu";
+import ModalPortal from "../modal/ModalPortal";
 
 const Header = ({ title }) => {
   const navigate = useNavigate();
@@ -19,29 +21,40 @@ const Header = ({ title }) => {
   // 햄버거 메뉴 modal
   const [modal, setModal] = useState(false);
 
-  // sse modal
-  const [notice, setNotice] = useState(false);
-
-  // 로그인 여부를 확인하기 위해 storage에서 가져온 데이터
-  const token = sessionStorage.getItem("ACCESS_TOKEN");
-
   // 클릭 시 모달 열고 닫기
   const onModalHandler = (e) => {
     setModal(!modal);
   };
 
+  // 로그인 여부를 확인하기 위해 storage에서 가져온 데이터
+  const token = sessionStorage.getItem("ACCESS_TOKEN");
+
   // sse
+  // sse modal
+  const [notice, setNotice] = useState(false);
+
+  // 알림 modal on/off
+  const modalHandler = () => {
+    setNotice(false);
+  };
+
+  // 알림 갯수
   const [count, setCount] = useState();
 
+  // 서버로부터 받아온 알림 갯수를 state에 저장
   const getNotice = async () => {
     const res = await instance.get("/api/auth/notice/notifications");
     setCount(res.data.unreadCount);
   };
 
+  // 알림 아이콘 Click했을 경우,
   const noticeModalHandler = () => {
+    // token이 있으면 알림 모달 open
     if (token) {
       setNotice(!notice);
-    } else {
+    }
+    // token이 없으면 안내 alert
+    else {
       Swal.fire({
         text: "로그인이 필요한 서비스입니다.",
         icon: "warning",
@@ -49,19 +62,17 @@ const Header = ({ title }) => {
     }
   };
 
+  // token이 있으면 렌더링될 때마다 알림 조회
   useEffect(() => {
     if (token) {
       getNotice();
     }
   }, []);
 
-  const modalHandler = () => {
-    setNotice(false);
-  };
-
   return (
     <StHeader>
       <Top>
+        {/* SSE */}
         <Bell
           alt=""
           src={bell}
@@ -76,7 +87,9 @@ const Header = ({ title }) => {
             <SSE modalHandler={modalHandler} />
           </ModalPortal>
         )}
+        {/* LOGO */}
         <img alt="" src={dolphin} onClick={() => navigate("/")} />
+        {/* 햄버거 메뉴 */}
         <img
           alt=""
           src={burger}
@@ -84,9 +97,10 @@ const Header = ({ title }) => {
           style={{ paddingBottom: "7px", paddingRight: "12px" }}
         />
       </Top>
+      {/* MENU BAR */}
       {modal && (
         <ModalPortal>
-          <HeaderMenu modalHandler={onModalHandler}/>
+          <HeaderMenu modalHandler={onModalHandler} />
         </ModalPortal>
       )}
       <Search title={title} />
@@ -103,12 +117,6 @@ const StHeader = styled.div`
   z-index: 3;
   position: fixed;
   top: 0;
-
-  & a {
-    &:hover {
-      cursor: pointer;
-    }
-  }
 `;
 
 const Top = styled.div`
@@ -128,11 +136,6 @@ const Top = styled.div`
     }
   }
 
-  & p {
-    font-size: 35px;
-    margin-top: 8px;
-    margin-left: 10px;
-  }
 `;
 
 const Count = styled.div`
@@ -152,8 +155,5 @@ const Bell = styled.img`
   margin-left: 10px;
   position: relative;
   top: 8px;
-
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;

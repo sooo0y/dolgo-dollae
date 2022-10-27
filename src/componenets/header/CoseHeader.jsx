@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import css from "../../css/header.css";
 import dolphin from "../../assert/header/logo_.png";
 import bell from "../../assert/header/bell.png";
 import { instance } from "../../shared/Api";

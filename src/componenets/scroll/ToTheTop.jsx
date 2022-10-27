@@ -42,15 +42,15 @@ export default ToTheTop;
 
 const Button01 = styled.button`
   position: absolute;
-  left: 110%;
-  top: 1200%;
-  width: 50px;
-  height: 50px;
+  left: 80%;
+  top: 650%;
+  width: 80px;
+  height: 80px;
 
   background-color: white;
 
-  border: 3px solid #abd4e2;
-  border-radius: 25px;
+  border: 5px solid #abd4e2;
+  border-radius: 40px;
 
   font-style: normal;
   font-weight: 700;
@@ -60,6 +60,6 @@ const Button01 = styled.button`
 
   &:hover {
     cursor: pointer;
-    border: 3px solid dodgerblue;
+    border: 5px solid dodgerblue;
   }
 `;

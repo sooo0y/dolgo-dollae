@@ -139,9 +139,6 @@ const StWithdrawal = styled.div`
     margin: 30px auto;
     justify-content: center;
     align-items: center;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 `;

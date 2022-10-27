@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { instance } from "../../shared/Api";
 import Swal from "sweetalert2";
+import { instance } from "../../shared/Api";
 
 const HeaderMenu = ({ modalHandler }) => {
   const navigate = useNavigate();
@@ -55,6 +55,7 @@ const HeaderMenu = ({ modalHandler }) => {
     }
   };
 
+  // Modal 바깥 클릭 시 modal off
   const modalRef = useRef();
 
   useEffect(() => {
@@ -78,7 +79,9 @@ const HeaderMenu = ({ modalHandler }) => {
         <h3 onClick={() => navigate("/select")}>지역별 여행지</h3>
         <h3 onClick={() => navigate("/random")}>랜덤 여행지</h3>
         <h3 onClick={() => navigate("/ideal")}>여행지 월드컵</h3>
+        <h3 onClick={() => navigate("/review/recent")}>최근 후기 목록</h3>
         <br />
+        {/* 로그인 했을 경우*/}
         {token !== null ? (
           <>
             <h3 onClick={() => navigate("/request/post")}>장소 추가 요청</h3>
@@ -87,6 +90,7 @@ const HeaderMenu = ({ modalHandler }) => {
           </>
         ) : null}
         <br />
+        {/* 관리자일 경우 */}
         {role === "ADMIN" ? (
           <>
             <h3 onClick={() => navigate("/request/list")}>* 요청 목록 *</h3>
@@ -94,6 +98,7 @@ const HeaderMenu = ({ modalHandler }) => {
           </>
         ) : null}
         <div>
+          {/* 로그인 했을 경우에는 로그인, 아닐 경우 로그아웃으로 노출 */}
           {token === null ? (
             <h3 onClick={() => navigate("/login")}>로그인 ＞</h3>
           ) : (
@@ -140,11 +145,7 @@ const Menu = styled.div`
 
   & h3 {
     margin: 30px auto;
-
-    &:hover {
-      cursor: pointer;
-      font-weight: bold;
-    }
+    cursor: pointer;
   }
 
   & div {

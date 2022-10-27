@@ -25,8 +25,6 @@ const RequestDetail = () => {
     getData();
   }, []);
 
-  console.log(data);
-
   return (
     <StRequestDetail>
       <Header />

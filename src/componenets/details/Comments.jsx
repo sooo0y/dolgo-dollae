@@ -61,6 +61,7 @@ const Comments = ({ comment, arr, isSelected, handleClick, elementIndex }) => {
               handleClick(elementIndex);
               setModal(false);
             }}
+            style={{ marginLeft: "-15px"}}
           >
             <p style={{ width: "9rem" }}>{date}</p>
             {comment.imageList.length === 0 ? (
@@ -84,16 +85,14 @@ const Comments = ({ comment, arr, isSelected, handleClick, elementIndex }) => {
                 <FaImage style={{ marginTop: "1rem" }} />
               </span>
             )}
-            <PCom>{comment.title}</PCom>
           </ContentDiv>
-          <div  id="state">
+          <div id="state">
             {modal === true ? (
               <CommentModal key={comment.comment_id} comment={comment} />
             ) : null}
           </div>
         </CommentDiv>
       )}
-
     </>
   );
 };
@@ -119,4 +118,9 @@ const ContentDiv = styled.div`
   text-align: center;
   align-items: center;
   margin: 0px auto;
+& span {
+  padding-top: 6px;
+  padding-right: 8px;
+  padding-left: -4px;
+}
 `;

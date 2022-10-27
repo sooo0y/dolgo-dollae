@@ -1,13 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import basicImg from "../../assert/image/basic.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { instance } from "../../shared/Api";
+
+// 이미지
+import basicImg from "../../assert/image/basic.png";
 
 const TopTen = () => {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const TopTen = () => {
     slidesToScroll: 1,
     autoplay: true,
     pauseOnHover: true,
-    arrows: false
+    arrows: false,
   };
 
   // 서버에서 받아온 테마별 데이터를 각 테마 state에 저장
@@ -44,27 +46,30 @@ const TopTen = () => {
     fetchPost();
   }, []);
 
-  if (foodList === undefined) {
-    return;
-  }
-
   return (
     <StTopTen>
       <Title>TOP 10</Title>
       <Theme style={{ marginTop: "-30px" }}>
         <h4>관광</h4>
         <Slider {...settings}>
-          {foodList.map((item) => (
+          {foodList?.map((item) => (
             <Card key={item.id} onClick={() => navigate(`/detail/${item.id}`)}>
               {item.image == null ? (
                 <>
                   <BasicImg src={basicImg} />
                   <BasicName>
-                    <ItemTitle style={{display: "block"}} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </BasicName>
                 </>
@@ -76,11 +81,18 @@ const TopTen = () => {
                     </ImgBox>
                   </ImgShadow>
                   <Name>
-                    <ItemTitle style={{ display: "block" }} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </Name>
                 </>
@@ -92,17 +104,24 @@ const TopTen = () => {
       <Theme>
         <h4>관람</h4>
         <Slider {...settings}>
-          {tourList.map((item) => (
+          {tourList?.map((item) => (
             <Card key={item.id} onClick={() => navigate(`/detail/${item.id}`)}>
               {item.image == null ? (
                 <>
                   <BasicImg src={basicImg} />
                   <BasicName>
-                    <ItemTitle style={{ display: "block" }} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
                       <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </BasicName>
                 </>
@@ -114,11 +133,18 @@ const TopTen = () => {
                     </ImgBox>
                   </ImgShadow>
                   <Name>
-                    <ItemTitle style={{ display: "block" }} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </Name>
                 </>
@@ -130,17 +156,24 @@ const TopTen = () => {
       <Theme>
         <h4>액티비티</h4>
         <Slider {...settings}>
-          {activityList.map((item) => (
+          {activityList?.map((item) => (
             <Card key={item.id} onClick={() => navigate(`/detail/${item.id}`)}>
               {item.image == null ? (
                 <>
                   <BasicImg src={basicImg} />
                   <BasicName>
-                    <ItemTitle style={{ display: "block" }} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </BasicName>
                 </>
@@ -152,11 +185,18 @@ const TopTen = () => {
                     </ImgBox>
                   </ImgShadow>
                   <Name>
-                    <ItemTitle style={{ display: "block" }} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </Name>
                 </>
@@ -168,17 +208,24 @@ const TopTen = () => {
       <Theme>
         <h4>식도락</h4>
         <Slider {...settings}>
-          {museumList.map((item) => (
+          {museumList?.map((item) => (
             <Card key={item.id} onClick={() => navigate(`/detail/${item.id}`)}>
               {item.image == null ? (
                 <>
                   <BasicImg src={basicImg} />
                   <BasicName>
-                    <ItemTitle style={{ display: "block" }} >{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      /> {item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />{" "}
+                      {item.star}
                     </div>
                   </BasicName>
                 </>
@@ -190,11 +237,18 @@ const TopTen = () => {
                     </ImgBox>
                   </ImgShadow>
                   <Name>
-                    <ItemTitle style={{ display: "block" }}>{item.title}</ItemTitle>
+                    <ItemTitle style={{ display: "block" }}>
+                      {item.title}
+                    </ItemTitle>
                     <div>
-                    <FaStar
-                        style={{ color: "#fcc419", marginRight: "0.3rem", marginTop: "0.2rem" }}
-                      />{item.star}
+                      <FaStar
+                        style={{
+                          color: "#fcc419",
+                          marginRight: "0.3rem",
+                          marginTop: "0.2rem",
+                        }}
+                      />
+                      {item.star}
                     </div>
                   </Name>
                 </>
