@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import Slider from "react-slick";
@@ -18,18 +18,34 @@ const ModalImage = ({onClose, comment}) => {
     arrow:false
   };
 
+  const modalRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", clickModalOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", clickModalOutside);
+    };
+  });
+
+  const clickModalOutside = (event) => {
+    if (!modalRef.current.contains(event.target)) {
+      onClose();
+    }
+  };
+
   return (
       <Background>
         <Content>
-          <PageDel>
-            <HeadDiv>
+          <PageDel ref={modalRef}>
+            {/* <HeadDiv>
               <CancelP 
                 onClick={() => {
                   onClose(false);
                   document.body.style.overflow = "unSet"
                 }}
                 >X</CancelP>
-            </HeadDiv>
+            </HeadDiv> */}
             <Slider {...settings}> 
                   {comment.imageList.map((image, index) => {
                     return <DetailImg key={index} alt="" src={image} />;
@@ -66,7 +82,7 @@ const Content = styled.div`
 const PageDel = styled.div`
   max-width:400px;
   width: 100%;
-  height: 100%;
+  height: 300px;
   max-height:428px;
   background-color: rgb(255, 255, 255);
   margin: auto;
@@ -88,8 +104,8 @@ const DetailImg = styled.img`
   width: 100%;
   height:300px;
   border-radius: 20px;
-  margin-top: 1rem;
-  margin-bottom:1rem;
+  /* margin-top: 1rem;
+  margin-bottom:1rem; */
 `;
 
 const HeadDiv = styled.div`
