@@ -421,31 +421,27 @@ const WorldCup = () => {
       sessionStorage.setItem("IDEAL_THEME_CODE", 0);
       sessionStorage.setItem("IDEAL_THEME_NAME", "전체");
     }
-    const res = await instance
-      .get(
-        `/api/place/worldcup?areaCode=${sessionStorage.getItem(
-          "IDEAL_AREA_CODE"
-        )}&sigunguCode=${sessionStorage.getItem(
-          "IDEAL_SIGUNGU_CODE"
-        )}&themes=${sessionStorage.getItem("IDEAL_THEME_CODE")}`
-      )
-      .then((res) => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        let timerInterval;
-        Swal.fire({
-          html: "여행지 월드컵이<br/>곧 시작됩니다.",
-          text: "안내사항을 꼭! 읽어주세요 😊",
-          timer: 2000,
-          timerProgressBar: true,
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        }).then((result) => {
-          navigate("/ideal/match");
-          // JSON을 String 형식으로 만들어 sessionStorage에 저장
-          sessionStorage.setItem("Data", JSON.stringify(res.data));
-        });
-      });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    let timerInterval;
+    Swal.fire({
+      html: "여행지 월드컵이<br/>곧 시작됩니다.",
+      text: "안내사항을 꼭! 읽어주세요 😊",
+      timer: 1500,
+      timerProgressBar: true,
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    });
+    const res = await instance.get(
+      `/api/place/worldcup?areaCode=${sessionStorage.getItem(
+        "IDEAL_AREA_CODE"
+      )}&sigunguCode=${sessionStorage.getItem(
+        "IDEAL_SIGUNGU_CODE"
+      )}&themes=${sessionStorage.getItem("IDEAL_THEME_CODE")}`
+    );
+    navigate("/ideal/match");
+    // JSON을 String 형식으로 만들어 sessionStorage에 저장
+    sessionStorage.setItem("Data", JSON.stringify(res.data));
   };
 
   return (

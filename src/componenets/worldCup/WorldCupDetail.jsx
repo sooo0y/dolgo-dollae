@@ -63,8 +63,10 @@ const WorldCupDetail = ({ detail, modalHandler }) => {
               <Data>
                 {detailData && detailData?.imageUrl.length === 0 ? (
                   <>
-                    <Img alt="detailImg" src={basicImg} />
-                    <Title1>{detailData?.title}</Title1>
+                    <BasicImg alt="detailImg" src={basicImg} />
+                    <Title1 style={{ paddingTop: "35px" }}>
+                      {detailData?.title}
+                    </Title1>
                   </>
                 ) : (
                   <>
@@ -200,25 +202,29 @@ const Content = styled.div`
 const PageDel = styled.div`
   max-width: 428px;
   width: 90%;
-  height: 80%;
+  height: 70%;
   background-color: rgb(255, 255, 255);
   margin: auto;
   flex-direction: column;
   display: flex;
   z-index: 99;
   border-radius: 10px;
-  overflow-y: auto;
+  overflow: auto;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    width: 0px;
+    color: gray;
+  }
 `;
 
 const Data = styled.div`
   background-color: #eef6fa;
   min-height: 450px;
+  margin-top: -20px;
 `;
 
 const Title = styled.h2`
@@ -283,6 +289,14 @@ const Img = styled.img`
   margin: 20px auto;
 `;
 
+const BasicImg = styled.img`
+  width: 90%;
+  height: 300px;
+  margin: 20px auto;
+  justify-content: center;
+  display: flex;
+  padding-top: 20px;
+`;
 const SearchDate = styled.div`
   padding-top: 20px;
   width: 90%;
