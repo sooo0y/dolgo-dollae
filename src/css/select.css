@@ -1,0 +1,70 @@
+/* category css */
+
+.category-set {
+  display: flex;
+  justify-content: center;
+  max-width: 428px;
+  width: 100%;
+  font-size: 20px;
+  flex-wrap: wrap;
+}
+
+.category-child {
+  background-color: rgba(226, 240, 246, 0.37);
+  border-radius: 15px;
+  width: 142px;
+  height: 45px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.category-child:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.selected {
+  background: rgba(172, 212, 228, 0.71);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+/* location css */
+
+.location-set {
+  display: flex;
+  /* justify-content: center; */
+  max-width: 428px;
+  width: 100%;
+  font-size: 20px;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.location-child {
+  background-color: rgba(226, 240, 246, 0.37);
+  border-radius: 15px;
+  width: 91px;
+  height: 45px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.location-child:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.selected {
+  background: rgba(172, 212, 228, 0.71);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+}
+

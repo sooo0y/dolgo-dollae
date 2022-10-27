@@ -1,0 +1,16 @@
+{
+    "main": [
+        {"foodList": [
+            {"title": "title", "imageUrl": "https://blog.kakaocdn.net/dn/dbXcOg/btraWTKkpOy/DPNZA9yXcl6RHWkVBKsZxK/img.png", "star": "star"},
+            {"title": "title", "imageUrl": "https://www.urbanbrush.net/web/wp-content/uploads/edd/2021/06/urbanbrush-20210611102855770634.jpg", "star": "star"},
+            {"title": "title", "imageUrl": "https://www.urbanbrush.net/web/wp-content/uploads/edd/2020/02/urbanbrush-20200227023608426223.jpg", "star": "star"}
+        ]},
+
+        {"tourList": [{"title": "title", "imageUrl": "imageUrl", "star": "star"}]},
+        {"activityList": [{"title": "title", "imageUrl": "imageUrl", "star": "star"}]},
+        {"museumList": [{"title": "title", "imageUrl": "imageUrl", "star": "star"}]}
+    ],
+    "data":[
+      
+    ]
+}
