@@ -104,13 +104,13 @@ const DetailForm = () => {
     const contentCurrnet = e.target.value;
     setContent(contentCurrnet);
 
-    // if (!contentRegex.test(contentCurrnet)) {
-    //   setContentMessage("10글자 이상 작성해주세요");
-    //   setIsContent(false);
-    // } else {
-    //   setContentMessage(null);
-    //   setIsContent(true);
-    // }
+    if (!contentRegex.test(contentCurrnet)) {
+      setContentMessage("10글자 이상 작성해주세요");
+      setIsContent(false);
+    } else {
+      setContentMessage(null);
+      setIsContent(true);
+    }
   };
   console.log(content)
   const onChangeTitle = (e) => {
@@ -143,7 +143,7 @@ const DetailForm = () => {
       return;
     }
     if (
-      isContent !== true || 
+      // isContent !== true || 
       isTitle !== true) {
       Swal.fire({
         text: "형식을 확인해주세요",
@@ -280,7 +280,7 @@ const DetailForm = () => {
           {content.length > 0 && (
             <p style={{ color: "red" }}>{contentMessage}</p>
           )}
-        </Message> 
+        </Message>
         <ButDiv>
           <AddBut onClick={onAddComment}>작성하기</AddBut>
           <CancelBut onClick={() => navigate("/detail/" + id)}>
@@ -508,3 +508,4 @@ const CancelBut = styled.button`
   /* margin-left:1rem; */
   width: 100%;
 `;
+
