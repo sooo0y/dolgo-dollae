@@ -124,7 +124,7 @@ const DetailRevise = () => {
   //내용 유효성 검사
   const onChangeContent = (e) => {
     const contentRegex =
-      /^(?=.*[a-zA-z0-9가-힣ㄱ-ㅎㅏ-ㅣ!@#$%^*+=-]).{10,300}$/;
+    /^(?=.*[a-zA-z0-9가-힣ㄱ-ㅎㅏ-ㅣ!@#$%^*+=]).{10,3000}$/gs;
     const contentCurrnet = e.target.value;
     setContent(contentCurrnet);
 
