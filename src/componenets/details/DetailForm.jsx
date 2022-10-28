@@ -100,7 +100,7 @@ const DetailForm = () => {
   //후기 내용 10글자 이상 작성
   const onChangeContent = (e) => {
     const contentRegex =
-      /^(?=.*[a-zA-z0-9가-힣ㄱ-ㅎㅏ-ㅣ!@#$%^*+=-]).{10,3000}$/;
+    /^(?=.*[a-zA-z0-9가-힣ㄱ-ㅎㅏ-ㅣ!@#$%^*+=]).{10,3000}$/gs;
     const contentCurrnet = e.target.value;
     setContent(contentCurrnet);
 
@@ -143,7 +143,7 @@ const DetailForm = () => {
       return;
     }
     if (
-      // isContent !== true || 
+      isContent !== true || 
       isTitle !== true) {
       Swal.fire({
         text: "형식을 확인해주세요",
@@ -276,11 +276,11 @@ const DetailForm = () => {
             placeholder="후기를 남겨주세요"
           />
         </LiTilte>
-        {/* <Message>
+        <Message>
           {content.length > 0 && (
             <p style={{ color: "red" }}>{contentMessage}</p>
           )}
-        </Message> */}
+        </Message> 
         <ButDiv>
           <AddBut onClick={onAddComment}>작성하기</AddBut>
           <CancelBut onClick={() => navigate("/detail/" + id)}>
