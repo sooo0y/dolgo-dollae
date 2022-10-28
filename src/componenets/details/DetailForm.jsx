@@ -49,20 +49,20 @@ const DetailForm = () => {
   };
   //이미지 리사이징
   const compressImage = async (image) => {
-    try{
+    try {
       const options = {
         maxSizeMb: 1,
         maxWidthOrHeight: 600,
-        alwaysKeepResolution : true, //품질만 낮추고 항상 너비와 높이 유지
-      }
+        alwaysKeepResolution: true, //품질만 낮추고 항상 너비와 높이 유지
+      };
       return await imageCompression(image, options);
-    } catch(e){
+    } catch (e) {
       console.log(e);
-    };
+    }
   };
 
   //이미지 미리보기 및 리사이징
-  const onChangeImg = async(e) => {
+  const onChangeImg = async (e) => {
     const imageList = e.target.files;
     let imageLists = [...image];
     let imgFiles = [...fileImage];
@@ -104,14 +104,15 @@ const DetailForm = () => {
     const contentCurrnet = e.target.value;
     setContent(contentCurrnet);
 
-    if (!contentRegex.test(contentCurrnet)) {
-      setContentMessage("10글자 이상 작성해주세요");
-      setIsContent(false);
-    } else {
-      setContentMessage(null);
-      setIsContent(true);
-    }
+    // if (!contentRegex.test(contentCurrnet)) {
+    //   setContentMessage("10글자 이상 작성해주세요");
+    //   setIsContent(false);
+    // } else {
+    //   setContentMessage(null);
+    //   setIsContent(true);
+    // }
   };
+  console.log(content)
   const onChangeTitle = (e) => {
     const TitleRegex = /^(?=.*[a-zA-z0-9가-힣ㄱ-ㅎㅏ-ㅣ!@#$%^*+=-]).{1,20}$/;
     const TitleCurrnet = e.target.value;
@@ -132,7 +133,6 @@ const DetailForm = () => {
     // nickname:nickname
   };
 
-
   const onAddComment = async (e) => {
     e.preventDefault();
     if (title === "" || content === "" || star === 0) {
@@ -142,7 +142,9 @@ const DetailForm = () => {
       });
       return;
     }
-    if (isContent !== true || isTitle !== true) {
+    if (
+      // isContent !== true || 
+      isTitle !== true) {
       Swal.fire({
         text: "형식을 확인해주세요",
         icon: "warning",
@@ -164,15 +166,21 @@ const DetailForm = () => {
     for (let value of payload.formData.values()) {
       console.log(value);
     }
-    dispatch(_postComment(payload))
-    .then(( dispatch ) => Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: '작성 완료',
-      showConfirmButton: false,
-      timer: 1000
-    }))
+    dispatch(_postComment(payload)).then((dispatch) =>
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "작성 완료",
+        showConfirmButton: false,
+        timer: 1000,
+      })
+    );
   };
+
+  // 화면 렌더링시 스크롤 맨 위로 이동
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <StDetailForm>
@@ -268,11 +276,11 @@ const DetailForm = () => {
             placeholder="후기를 남겨주세요"
           />
         </LiTilte>
-        <Message>
+        {/* <Message>
           {content.length > 0 && (
             <p style={{ color: "red" }}>{contentMessage}</p>
           )}
-        </Message>
+        </Message> */}
         <ButDiv>
           <AddBut onClick={onAddComment}>작성하기</AddBut>
           <CancelBut onClick={() => navigate("/detail/" + id)}>
@@ -308,7 +316,7 @@ const BoxTitle = styled.div`
 const BoxSpan = styled.p`
   color: rgb(255, 80, 88);
   text-align: right;
-  line-height: 2rem;
+  line-height: 1rem;
   padding-right: 10px;
 `;
 const LiImg = styled.li`
@@ -376,7 +384,7 @@ const DeleteImg = styled.button`
   cursor: pointer;
 `;
 const LiTilte = styled.li`
-  padding: 10px 0px;
+  /* padding: 10px 0px; */
   /* display: flex; */
   width: 100%;
 `;

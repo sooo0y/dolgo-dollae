@@ -119,10 +119,8 @@ function Router() {
     );
     // console.log("구독성공");
     eventSource.addEventListener("sse", function (event) {
-      console.log(event)
-      const data = JSON.parse(event.data);
       (async () => {
-        // console.log(data)
+        const data = JSON.parse(event.data);
         // 브라우저 알림
         const showNotification = () => {
           const notification = new Notification(

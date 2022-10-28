@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import PaginationRequest from "../../componenets/pagination/PaginationRequest";
 import { FaImage } from "react-icons/fa";
 
-const RequestList = () => {
+const RecentReview = () => {
   const navigate = useNavigate();
 
   // 서버로부터 받아온 값을 state에 저장
   const [list, setList] = useState([]);
   const [reviewList, setReviewList] = useState([...list].reverse());
-  console.log(list);
+  // console.log(list);
 
   const getList = async () => {
     const response = await instance.get("/api/comment/recent");
@@ -49,7 +49,7 @@ const RequestList = () => {
         {currentReview?.map((item) => {
           return (
             <Contents
-              key={item.id}
+              key={item.comment_id}
               onClick={() => navigate(`/detail/${item.place_id}`)}
             >
               <Image>
@@ -95,7 +95,7 @@ const RequestList = () => {
   );
 };
 
-export default RequestList;
+export default RecentReview;
 
 const StAdministrator = styled.div`
   max-width: 428px;
